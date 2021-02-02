@@ -1,0 +1,8 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+#section_tops {
+    background-image: url("/img/bg_doom.jpg");
+    background-size: cover;
+}
