@@ -11,6 +11,8 @@ export default function Home() {
   const [valForm, setValFrom] = useState({ username: "", password: "" });
   const [isLogin, setLogin] = useState(false)
   const [isModalReg, setModalReg] = useState(false)
+  const [isFormReg, setFormReg] = useState(false)
+  const [statusFormReg, setStatusFormReg] = useState(1)
 
 
   useEffect(() => {
@@ -65,6 +67,121 @@ export default function Home() {
     setValFrom({ username: "", password: "" })
   }
 
+  function RegisterForm1() {
+    if (statusFormReg == 1) {
+
+      return (
+        <div>
+          <div className="text-left py-1 font-bold pl-16">
+            Your Email
+                      </div>
+          <div className="text-left pt-1 pb-8 text-sm w-3/4 text-gray-400 pl-16">
+            Unless you opt-in, we'll only email you about your account or purchases you make.
+                      </div>
+          <div className="py-1">
+            <input type="text" placeholder="Email" className="p-2 w-9/12 border-gray-400 border-2 focus-within:border-green-300 focus-within:text-green-300" required={true} />
+          </div>
+
+          <div className="text-left pt-10 pb-1 font-bold pl-16">
+            Keep in touch! Sign up for updates.
+                      </div>
+          <div className="pt-5 inline-flex w-9/12 space-x-4">
+            <div className="">
+              <input type="checkbox" className="cursor-pointer form-tick appearance-none h-6 w-6 border border-gray-300 rounded-md checked:bg-green-300 checked:border-transparent focus:outline-none" />
+            </div>
+            <div className="text-sm">
+              Sign me up for the latest Bethesda game news, updates, access to exclusive betas, and more!
+                        </div>
+          </div>
+
+
+        </div>
+      );
+    } else if (statusFormReg == 2) {
+      return (<div>
+        <div className="text-left py-1 font-bold pl-16">
+          Your Account
+        </div>
+        <div className="text-left pt-1 pb-8 text-sm w-3/4 text-gray-400 pl-16">
+          Choose a Username and Password for your Bethesda.net account. You'll use this Username to log in to your account. It is public in the Bethesda.net forums.
+        </div>
+        <div className="py-3">
+          <input type="text" placeholder="Username" className="p-2 w-9/12 border-gray-400 border-2 focus-within:border-green-300 focus-within:text-green-300" required={true} />
+        </div>
+        <div className="py-3">
+          <input type="password" placeholder="Password" className="p-2 w-9/12 border-gray-400 border-2 focus-within:border-green-300 focus-within:text-green-300" required={true} />
+        </div>
+      </div>);
+    } else {
+      return (
+        <div>
+          <div className="text-left py-1 font-bold pl-16">
+            Security Question & Answer
+        </div>
+          <div className="text-left pt-1 pb-8 text-sm w-full text-gray-400 pl-16">
+            We'll ask you to answer your Security Question to verify your identity if you need to reset your password and for certain account-related Customer Service purposes, so make sure to remember your answer!
+        </div>
+          <div className="py-3">
+            <select placeholder="Question" className="p-2 w-9/12 border-gray-400 border-2 focus-within:border-green-300 focus-within:text-green-300">
+              <option>Question</option>
+            </select>
+          </div>
+          <div className="py-3">
+            <input type="text" placeholder="Answer" className="p-2 w-9/12 border-gray-400 border-2 focus-within:border-green-300 focus-within:text-green-300" required={true} />
+          </div>
+          <div className="text-left pb-2 pt-5 font-bold pl-16">
+            Legal Agreement
+          </div>
+          <div className="text-left pt-1 pb-8 text-sm w-full text-gray-400 pl-16">
+            By clicking 'Create Account', I agree to the Zenimax <a href="#" className="text-green-400">Terms of Service</a>,<a href="#" className="text-green-400">Privacy Policy.</a>, <a href="#" className="text-green-400">Code of Conduct</a> , and <a href="#" className="text-green-400">Bethesda.net Launcher EULA</a> .
+          </div>
+          <div className="pl-2">
+            <button className="w-4/5 bg-green-400 text-white py-2 text-sm px-28 hover:bg-green-300" >CREATE ACCOUNT</button>
+          </div>
+        </div>
+      )
+    }
+  }
+
+  function DotRegIndicator() {
+    if (statusFormReg == 1) {
+      return (
+        <div className="inline-flex space-x-3 pt-6">
+          <div className="w-2 rounded h-2 bg-gray-600"></div>
+          <div className="w-3  rounded-xl h-3 bg-green-400"></div>
+          <div className="w-2 rounded h-2 bg-gray-600"></div>
+          <div className="w-2 rounded h-2 bg-gray-600"></div>
+        </div>
+      );
+    } else if (statusFormReg == 2) {
+      return (
+        <div className="inline-flex space-x-3 pt-6">
+          <div className="w-2 rounded h-2 bg-gray-600"></div>
+          <div className="w-2 rounded h-2 bg-gray-600"></div>
+          <div className="w-3  rounded-xl h-3 bg-green-400"></div>
+          <div className="w-2 rounded h-2 bg-gray-600"></div>
+        </div>
+      );
+    } else {
+      return (
+        <div className="inline-flex space-x-3 pt-6" >
+          <div className="w-2 rounded h-2 bg-gray-600"></div>
+          <div className="w-2 rounded h-2 bg-gray-600"></div>
+          <div className="w-2 rounded h-2 bg-gray-600"></div>
+          <div className="w-3  rounded-xl h-3 bg-green-400"></div>
+        </div>
+      );
+    }
+  }
+
+  const handleClickReturnRegister = () => {
+    if (statusFormReg == 1) {
+      setFormReg(false);
+      setModalReg(true)
+    } else {
+      setStatusFormReg(statusFormReg - 1)
+    }
+  }
 
   return (
     <div className=" min-h-screen">
@@ -317,7 +434,7 @@ export default function Home() {
                   <div className="py-1 inline-flex w-9/12 space-x-4">
 
                     <div className="pl-2">
-                      <button className="w-full bg-green-400 text-white py-2 text-sm px-28 hover:bg-green-300">CREATE ACCOUNT</button>
+                      <button className="w-full bg-green-400 text-white py-2 text-sm px-28 hover:bg-green-300" onClick={() => { setModalReg(false); setFormReg(true); }}>CREATE ACCOUNT</button>
                     </div>
                   </div>
                   <div className="py-6 pl-16">
@@ -338,6 +455,46 @@ export default function Home() {
                   <div className="text-sm text-gray-400 font-bold pt-3">Have an account?</div>
                   <div>
                     <button className=" border-2 rounded px-7 py-2 text-sm text-gray-400 border-gray-400" onClick={() => { setModalReg(false); setModal(true); }}>LOGIN</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className={`fixed bg-gray-400 w-screen h-screen bg-opacity-50 ${isFormReg ? 'flex' : 'hidden'} `}>
+              <div className="fixed bg-transparent w-screen h-screen left-0 top-0" onClick={() => { setFormReg(false) }}>
+              </div>
+              <div className="w-3/6 lg:w-1/4 m-auto py-3 h-3/4 rounded relative bg-white">
+                <div className="inline-flex space-x-16 m-0">
+                  <div className="font-extrabold text-lg font-doom">
+                    CREATE YOUR BETHESDA.NET ACCOUNT
+                  </div>
+                  <div className="cursor-pointer" onClick={() => { setFormReg(false) }}>
+                    <svg className=" block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                  </div>
+                </div>
+                <div className="bg-gray-100 h-4/5 mt-3 py-5">
+                  <div className={`w-full bg-red-600 text-white py-3 mb-3 ${isErrForm.status ? 'block' : 'hidden'}`}>{isErrForm.message}</div>
+
+                  <RegisterForm1 />
+
+
+                  <div className={`text-sm pt-24 text-left pl-16 text-gray-400 ${statusFormReg == 3 ? 'hidden' : 'block'}`}>
+                    All fields required unless otherwise noted.
+                    </div>
+
+                </div>
+                {/* footer */}
+                <div className="pt-4 inline-flex space-x-28">
+                  <div className="text-sm   pt-3">
+                    <button onClick={handleClickReturnRegister}>BACK</button>
+                  </div>
+
+                  <DotRegIndicator />
+
+                  <div className="text-sm pt-3">
+                    <button className={`${statusFormReg == 3 ? 'hidden' : 'block'}`} onClick={() => (setStatusFormReg(statusFormReg + 1))}>CONTINUE</button>
                   </div>
                 </div>
               </div>
